@@ -89,10 +89,14 @@ async function login() {
     }
 }
 
-dotenv.config();
-if (process.env.NORDNET_USERNAME && process.env.NORDNET_PASSWORD) {
-    login();
-} else {
-    console.error('Missing environment variables: NORDNET_USERNAME, NORDNET_PASSWORD')
+async function app() {
+    dotenv.config();
+    if (process.env.NORDNET_USERNAME && process.env.NORDNET_PASSWORD) {
+        await login();
+    } else {
+        console.error('Missing environment variables: NORDNET_USERNAME, NORDNET_PASSWORD')
+    }
+    console.log('Done!');
 }
-console.log('Done!');
+
+app();
